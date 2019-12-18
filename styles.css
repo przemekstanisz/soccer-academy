@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Exo:400,400i,500i,600i,700i,800i,900i|Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap&subset=latin-ext');
+
 * {
     margin: 0;
     padding: 0;
@@ -26,6 +27,8 @@
     --h1-fw: 500;
     
 }
+
+/* GLOBAL */
 
 body {
     background-color: var(--bg-color);
@@ -63,16 +66,18 @@ button {
     cursor: pointer;
     margin: 0 2rem 0 0;
     box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 1);
-    transition: box-shadow 300ms;
+    transition: transform 300ms;
 }
 
 button:hover {
-    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 1);
+    transform: scale(1.05);
 }
 
 img {
     display: block;
 }
+
+/* HERO */
 
 .hero {
     height: 100vh;
@@ -83,6 +88,8 @@ img {
     position: relative;
 }
 
+/* hero - right polygon */
+
 .hero::after {
     content: '';
     display: block;
@@ -92,8 +99,28 @@ img {
     height: 100%;
     width: 20%;
     background-color: var(--bg-color);
-    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, .1));
+    background-image: url('images/hero-bg.jpg');
+    background-size: calc(100vw - 30%);
+    background-position: top right;
+    background-repeat: no-repeat;
+    background-blend-mode: multiply;
     clip-path: polygon(100% 0, 100% 100%, 92% 100%, 92% 50%, 60% 50%, 10% 100%, 0 100%);
+}
+
+/* hero - right bright line */
+
+.hero::before {
+    content: '';
+    display: block;
+    position: absolute;
+    right: 0%;
+    bottom: 0;
+    height: 100%;
+    width: 20.5%;
+    background-color: var(--text-color);
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .5));
+    clip-path: polygon(20vw 0, 100% 0, calc(100% - 20vw) 100%, 0 100%);
+    z-index: 1;
 }
 
 .hero__features {
@@ -101,13 +128,19 @@ img {
     flex-direction: column;
     justify-content: flex-start;
     background-color: var(--bg-color);
-    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, .1));
+    background-image: url('images/hero-bg.jpg');
+    background-size: calc(100vw - 30%);
+    background-position: bottom left;
+    background-repeat: no-repeat;
+    background-blend-mode: multiply;
     height: 100%;
     width: 65%;
     position: relative;
-    z-index: 0;
-    clip-path: polygon(0 0, 100% 0, calc(100% - calc(175px / 2)) 25%, calc(100% - 175px) 25%, calc(100% - 350px) 75%, calc(100% - calc(350px * .75)) 75%, calc(100% - 350px) 100%, 0 100%);
+    z-index: 1;
+    clip-path: polygon(0 0, 100% 0, calc(100% - calc(10vw / 2)) 25%, calc(100% - 10vw) 25%, calc(100% - 20vw) 75%, calc(100% - calc(20vw * .75)) 75%, calc(100% - 20vw) 100%, 0 100%);
 }
+
+/* hero - shapes container - transparent */
 
 .hero__shapes {
     background-color: transparent;
@@ -118,45 +151,51 @@ img {
     left: 45%;
 }
 
+/* hero - top - left green block */
+
 .hero__shapes::before {
     content: '';
     display: block;
     position: absolute;
-    left: 25%;
-    top: -5px;
+    left: 21%;
+    top: 0px;
     height: 30%;
-    width: 200px;
-    background-color: transparent;
-    border: 5px solid var(--shapes-color);
-    transform: skew(-21deg);
-    z-index: 1;
+    width: 20%;
+    background-color: var(--shapes-color);
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .4));
+    clip-path: polygon(6vw 0, 100% 0, calc(100% - 6vw) 100%, 0 100%);
+    z-index: 0;
 }
+
+/* hero - bottom - right green block */
 
 .hero__shapes::after {
     content: '';
     display: block;
     position: absolute;
-    right: 20%;
+    right: 23%;
     bottom: 0;
     height: 30%;
-    width: 200px;
-    background-color: transparent;
-    border: 5px solid var(--shapes-color);
-    border-bottom-color: transparent;
-    transform: skew(-21deg);
-    z-index: 1;
+    width: 18%;
+    background-color: var(--shapes-color);
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .4));
+    clip-path: polygon(6vw 0, 100% 0, calc(100% - 6vw) 100%, 0 100%);
+    z-index: 0;
 }
+
+/* hero - bottom - left bright block */
 
 .hero__features::after {
     content: '';
     display: block;
     position: absolute;
-    right: 350px;
+    right: 26%;
     bottom: 0;
-    height: 22%;
-    width: 2px;
-    background-color: var(--shapes-color);
-    transform: skew(-21deg);
+    height: 30%;
+    width: 15%;
+    background-color: var(--text-color);
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .5));
+    clip-path: polygon(6vw 0, 100% 0, calc(100% - 6vw) 100%, 0 100%);
     z-index: 1;
 }
 
@@ -167,7 +206,7 @@ img {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    margin: 0 6rem;
+    margin: 0 3rem;
     position: relative;
 }
 
@@ -179,7 +218,7 @@ img {
     width: 70%;
     display: flex;
     justify-content: space-between;
-    margin: 3rem 6rem 0 6rem;
+    margin: 3rem 3rem 0 3rem;
     list-style: none;
 }
 
@@ -218,7 +257,7 @@ img {
     justify-content: space-between;
     position: absolute;
     left: 0;
-    bottom: 10%;
+    bottom: 1%;
 }
 
 .social--text {
@@ -232,11 +271,71 @@ img {
     transition: opacity 300ms, transform 300ms;
 }
 
+.icon--first {
+    margin: 0 1rem 0 2rem;
+}
+
 .social__icon:hover {
     opacity: 100%;
     transform: scale(1.2);
-    
 }
 
-m
+/* ABOUT - spiral section */
+
+.about {
+    height: 100vh;
+    display: flex;
+}
+
+.about__item {
+    border: 1px solid white;
+}
+
+.item--item1,
+.item--item3,
+.item--item5 {
+    height: 100%;
+    width: 60%;
+}
+
+.item--item2,
+.item--item4 {
+    height: 60%;
+    width: 100%;
+}
+
+.item--item6,
+.item--item7 {
+    height: 50%;
+    width: 100%;
+}
+
+.about__section1 {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 40%;
+    height: 100%;
+}
+
+.about__section2 {
+    display: flex;
+    flex-direction: row-reverse;
+    height: 40%;
+    width: 100%;
+}
+
+.about__section3,
+.about__section5 {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 40%;
+}
+
+.about__section4 {
+    display: flex;
+    height: 40%;
+    width: 100%;
+}
+
 
